@@ -8,6 +8,10 @@
         "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/list.xml"
     },
     {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/layout/list_single.xml",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/list_single.xml"
+    },
+    {
         "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/layout/homepage.xml",
         "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/homepage.xml"
     }

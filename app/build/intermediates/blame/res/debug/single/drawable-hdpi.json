@@ -1,6 +1,50 @@
 [
     {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/image7.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/image7.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/image1.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/image1.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_launcher.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_home_black_24dp.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/generated/res/pngs/debug/drawable-hdpi/ic_home_black_24dp.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/image4.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/image4.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_dashboard_black_24dp.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/generated/res/pngs/debug/drawable-hdpi/ic_dashboard_black_24dp.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_notifications_black_24dp.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/generated/res/pngs/debug/drawable-hdpi/ic_notifications_black_24dp.png"
+    },
+    {
         "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/icon.png",
         "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/icon.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/image5.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/image5.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/image6.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/image6.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/image2.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/image2.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/drawable-hdpi/image3.png",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/drawable-hdpi/image3.png"
     }
 ]

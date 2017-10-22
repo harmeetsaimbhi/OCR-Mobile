@@ -16,9 +16,13 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
@@ -59,6 +63,40 @@ public class PhotoIntentActivity extends Activity {
     private static final String JPEG_FILE_SUFFIX = ".jpg";
 
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
+
+    //create listView
+
+    ListView list;
+   // LazyAdapter adapter;
+
+
+    String[] web = {
+            "Google Plus",
+            "Twitter",
+            "Windows",
+            "Bing",
+            "Itunes",
+            "Wordpress",
+            "Drupal"
+    } ;
+    Integer[] imageId = {
+            R.drawable.image1,
+            R.drawable.image2,
+            R.drawable.image3,
+            R.drawable.image4,
+            R.drawable.image5,
+            R.drawable.image6,
+            R.drawable.image7
+
+
+    };
+
+    // Temp save listItem position
+    int position;
+
+    int imageCount;
+    String imageTempName;
+    String[] imageFor;
 
 
     /* Photo album for this application */
@@ -263,14 +301,60 @@ public class PhotoIntentActivity extends Activity {
 //		}
 //	};
 
-    /**
-     * Called when the activity is first created.
+    /**     * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d("SAIMBHI", "onCreate method executed");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+
+        // retrireving files from the storage starts
+
+        File file = null;
+        File[] listFile = null;
+        String[] FilePathStrings = null;
+        String[] FileNameStrings = null;
+
+        file = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
+
+        if (file.isDirectory()) {
+            listFile = file.listFiles();
+            // Create a String array for FilePathStrings
+            FilePathStrings = new String[listFile.length];
+            // Create a String array for FileNameStrings
+            FileNameStrings = new String[listFile.length];
+
+            for (int i = 0; i < listFile.length; i++) {
+                // Get the path of the image file
+                FilePathStrings[i] = listFile[i].getAbsolutePath();
+                // Get the name image file
+                FileNameStrings[i] = listFile[i].getName();
+            }
+        }
+
+        // Locate the GridView in gridview_main.xml
+//        grid = (GridView) findViewById(R.id.list);
+//        // Pass String arrays to LazyAdapter Class
+//        adapter = new LazyAdapter(this, FilePathStrings, FileNameStrings);
+//        // Set the LazyAdapter to the GridView
+//        grid.setAdapter(adapter);
+
+        //retrireving files from the storage ends
+
+        // to create ListView
+        CustomList adapter = new
+                CustomList(PhotoIntentActivity.this, web, imageId);
+        list=(ListView)findViewById(R.id.list);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(PhotoIntentActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+
+            }});
 
 //		mImageView = (ImageView) findViewById(R.id.imageView1);
 //
