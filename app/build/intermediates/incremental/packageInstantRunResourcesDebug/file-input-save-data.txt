@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Oct 21 20:39:20 PDT 2017
+#Tue Oct 24 22:20:07 PDT 2017
 25.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/ic_home_black_24dp.png
 25.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 22.set=ANDROID_RESOURCE
@@ -12,7 +12,7 @@
 14.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/assets/debug
 16.set=ANDROID_RESOURCE
 count=35
-6.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher.png
+6.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher_round.png
 6.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 26.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/icon.png
 2.set=ANDROID_RESOURCE
@@ -26,11 +26,11 @@ count=35
 20.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 10.set=ANDROID_RESOURCE
 31.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/menu/main.xml
-15.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/image4.png
+15.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-hdpi-v4/ic_launcher_round.png
 31.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 15.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 26.set=ANDROID_RESOURCE
-7.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher_round.png
+7.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v21/ic_home_black_24dp.xml
 7.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 15.set=ANDROID_RESOURCE
 27.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/layout/list.xml
@@ -43,7 +43,7 @@ count=35
 21.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 20.set=ANDROID_RESOURCE
 32.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/resources.arsc
-16.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-hdpi-v4/ic_launcher_round.png
+16.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/image4.png
 32.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 6.set=ANDROID_RESOURCE
 16.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
@@ -102,7 +102,7 @@ count=35
 17.set=ANDROID_RESOURCE
 13.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xhdpi-v4/ic_launcher_round.png
 13.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
-5.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v21/ic_home_black_24dp.xml
+5.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher.png
 3.set=ANDROID_RESOURCE
 5.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 33.set=ANDROID_RESOURCE

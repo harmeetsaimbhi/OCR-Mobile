@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Oct 21 20:38:41 PDT 2017
+#Tue Oct 24 22:20:14 PDT 2017
 5.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
 42.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
 32.set=ANDROID_RESOURCE
@@ -12,7 +12,7 @@
 10.set=ASSET
 28.set=NATIVE_RESOURCE
 22.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
-0.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xhdpi-v4/ic_launcher.png
+0.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/layout-land/main.xml
 32.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 17.set=ANDROID_RESOURCE
 50.set=ANDROID_RESOURCE
@@ -31,7 +31,7 @@
 21.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main/lib/x86/libtess.so
 16.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
 49.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/icon.png
-31.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v21/ic_home_black_24dp.xml
+31.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher_round.png
 24.set=ANDROID_RESOURCE
 25.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/image3.png
 35.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/ic_launcher.png
@@ -54,7 +54,7 @@
 20.set=ANDROID_RESOURCE
 38.set=ANDROID_RESOURCE
 23.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
-1.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/layout-land/main.xml
+1.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xhdpi-v4/ic_launcher.png
 33.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 17.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_
 27.set=NATIVE_RESOURCE
@@ -72,7 +72,7 @@ count=55
 7.set=ANDROID_RESOURCE
 45.set=ANDROID_RESOURCE
 22.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/resources.arsc
-32.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher_round.png
+32.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v21/ic_home_black_24dp.xml
 34.set=NATIVE_RESOURCE
 26.file=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/resources-debug.ap_/res/layout/homepage.xml
 23.set=NATIVE_RESOURCE

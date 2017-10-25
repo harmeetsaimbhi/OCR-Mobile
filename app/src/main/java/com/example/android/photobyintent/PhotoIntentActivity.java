@@ -97,6 +97,7 @@ public class PhotoIntentActivity extends Activity {
     int imageCount;
     String imageTempName;
     String[] imageFor;
+    LazyAdapter adapter;
 
 
     /* Photo album for this application */
@@ -316,45 +317,53 @@ public class PhotoIntentActivity extends Activity {
         String[] FilePathStrings = null;
         String[] FileNameStrings = null;
 
-        file = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
+        file = new File( Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES) + "/CameraSample");
+
 
         if (file.isDirectory()) {
             listFile = file.listFiles();
+
             // Create a String array for FilePathStrings
             FilePathStrings = new String[listFile.length];
+
             // Create a String array for FileNameStrings
             FileNameStrings = new String[listFile.length];
 
             for (int i = 0; i < listFile.length; i++) {
                 // Get the path of the image file
                 FilePathStrings[i] = listFile[i].getAbsolutePath();
+                Log.d("list of path string is:" , FilePathStrings[i]);
                 // Get the name image file
                 FileNameStrings[i] = listFile[i].getName();
+                Log.d("list of name strin is:" , FileNameStrings[i]);
             }
         }
 
-        // Locate the GridView in gridview_main.xml
-//        grid = (GridView) findViewById(R.id.list);
-//        // Pass String arrays to LazyAdapter Class
-//        adapter = new LazyAdapter(this, FilePathStrings, FileNameStrings);
-//        // Set the LazyAdapter to the GridView
-//        grid.setAdapter(adapter);
-
-        //retrireving files from the storage ends
 
         // to create ListView
-        CustomList adapter = new
-                CustomList(PhotoIntentActivity.this, web, imageId);
+        adapter = new
+                LazyAdapter(PhotoIntentActivity.this, FileNameStrings, FileNameStrings);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//                Toast.makeText(PhotoIntentActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+//
+//            }});
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                adapter.imageLoader.clearCache();
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+        //list.setOnClickListener(listener);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(PhotoIntentActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
-            }});
 
 //		mImageView = (ImageView) findViewById(R.id.imageView1);
 //
