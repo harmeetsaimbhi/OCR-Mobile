@@ -34,9 +34,10 @@ int id textView 0x7f0b0000
 int id txt 0x7f0b0004
 int id videoView1 0x7f0b0008
 int layout homepage 0x7f040000
-int layout list 0x7f040001
-int layout list_single 0x7f040002
-int layout main 0x7f040003
+int layout image_preview 0x7f040001
+int layout list 0x7f040002
+int layout list_single 0x7f040003
+int layout main 0x7f040004
 int menu main 0x7f0a0000
 int menu navigation 0x7f0a0001
 int mipmap ic_launcher 0x7f030000

@@ -1,6 +1,7 @@
 package com.example.android.photobyintent;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.*;
@@ -30,6 +32,7 @@ import com.googlecode.tesseract.android.TessBaseAPI;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -65,50 +68,17 @@ public class PhotoIntentActivity extends Activity {
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
 
     //create listView
-
     ListView list;
-   // LazyAdapter adapter;
-
-
-    String[] web = {
-            "Google Plus",
-            "Twitter",
-            "Windows",
-            "Bing",
-            "Itunes",
-            "Wordpress",
-            "Drupal"
-    } ;
-    Integer[] imageId = {
-            R.drawable.image1,
-            R.drawable.image2,
-            R.drawable.image3,
-            R.drawable.image4,
-            R.drawable.image5,
-            R.drawable.image6,
-            R.drawable.image7
-
-
-    };
-
-    // Temp save listItem position
-    int position;
-
-    int imageCount;
-    String imageTempName;
-    String[] imageFor;
     LazyAdapter adapter;
 
 
     /* Photo album for this application */
     private String getAlbumName() {
-        Log.d("SAIMBHI", "getAlbumName method executed");
         return getString(R.string.album_name);
     }
 
 
     private File getAlbumDir() {
-        Log.d("SAIMBHI", "getAlbumDirectory method executed");
         File storageDir = null;
 
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
@@ -132,7 +102,6 @@ public class PhotoIntentActivity extends Activity {
     }
 
     private File createImageFile() throws IOException {
-        Log.d("SAIMBHI", "createImageFile method executed");
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
@@ -142,16 +111,13 @@ public class PhotoIntentActivity extends Activity {
     }
 
     private File setUpPhotoFile() throws IOException {
-        Log.d("SAIMBHI", "setUpPhotoFile method executed");
 
         File f = createImageFile();
         mCurrentPhotoPath = f.getAbsolutePath();
-        Log.d("CREATION", " \"*********************** in handlebigcamera() ***********************\"" + f);
         return f;
     }
 
-    private void setPic() {
-        Log.d("SAIMBHI", "setPic method executed");
+    private String setPic() {
 
 		/* There isn't enough memory to open up more than a couple camera photos */
         /* So pre-scale the target bitmap into which the file is decoded */
@@ -189,13 +155,13 @@ public class PhotoIntentActivity extends Activity {
         String OCRresult = null;
         mTess.setImage(bitmap);
         OCRresult = mTess.getUTF8Text();
+        Log.d("SAIMBHI", "The OCR Result is:" + OCRresult);
+        return OCRresult;
+       // generateNoteOnSD(context,)
 //		TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
 //		OCRTextView.setText(OCRresult);
 
-        Log.d("SAIMBHI", "The OCR Result is:" + OCRresult);
 
-
-        Log.d("CREATION", " \"*********************** CREATING BITMAP() ***********************\"" + bitmap);
 
 		/* Associate the Bitmap to the ImageView */
 //		mImageView.setImageBitmap(bitmap);
@@ -204,19 +170,42 @@ public class PhotoIntentActivity extends Activity {
 //		mVideoView.setVisibility(View.INVISIBLE);
     }
 
-    private void galleryAddPic() {
-        Log.d("SAIMBHI", "galleryAddPic method executed");
+    public void generateNoteOnSD(Context context, String sFileName, String sBody) {
+        try {
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            File root = new File( Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES) + "/CameraSample");
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File gpxfile = new File(root, sFileName);
+            FileWriter writer = new FileWriter(gpxfile);
+            writer.append(sBody);
+            writer.flush();
+            writer.close();
+            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.d("SAIMBHI", "Error in creating a text file");
+            e.printStackTrace();
+        }
+    }
+
+    private void galleryAddPic(String text) {
         Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
         File f = new File(mCurrentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
-        Log.d("CREATION", " \"*********************** in galleryaddpic() ***********************\"" + f.toString());
+        String textFileName = (f.getName().substring(0, f.getName().length() - 4).concat(".txt"));
+        generateNoteOnSD(this,textFileName,text);
+        Log.d("SAIMBHI", " \"*********************** in galleryaddpic() ***********************\"" + textFileName);
+
 
     }
 
+
+
     private void dispatchTakePictureIntent(int actionCode) {
-        Log.d("SAIMBHI", "dispatchTakePictureIntent method executed");
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -242,41 +231,17 @@ public class PhotoIntentActivity extends Activity {
         startActivityForResult(takePictureIntent, actionCode);
     }
 
-//	private void dispatchTakeVideoIntent() {
-//		Log.d("SAIMBHI", "dispatchTakeVideoContent method executed");
-//		Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-//		startActivityForResult(takeVideoIntent, ACTION_TAKE_VIDEO);
-//	}
-
-//	private void handleSmallCameraPhoto(Intent intent) {
-//		Log.d("SAIMBHI", "handleSmallCamerapPhoto method executed");
-//		Bundle extras = intent.getExtras();
-//		mImageBitmap = (Bitmap) extras.get("data");
-//		mImageView.setImageBitmap(mImageBitmap);
-//		mVideoUri = null;
-//		mImageView.setVisibility(View.VISIBLE);
-//		mVideoView.setVisibility(View.INVISIBLE);
-//	}
-
     private void handleBigCameraPhoto() {
         Log.d("SAIMBHI", "HANDLEBIGCAMERA method executed");
 
         if (mCurrentPhotoPath != null) {
-            setPic();
-            galleryAddPic();
+            String exctractedText = setPic();
+            galleryAddPic(exctractedText);
             mCurrentPhotoPath = null;
         }
 
     }
 
-//	private void handleCameraVideo(Intent intent) {
-//		Log.d("SAIMBHI", "handleCameraVideo method executed");
-//		mVideoUri = intent.getData();
-//		mVideoView.setVideoURI(mVideoUri);
-//		mImageBitmap = null;
-//		mVideoView.setVisibility(View.VISIBLE);
-//		mImageView.setVisibility(View.INVISIBLE);
-//	}
 
     Button.OnClickListener mTakePicOnClickListener =
             new Button.OnClickListener() {
@@ -286,21 +251,6 @@ public class PhotoIntentActivity extends Activity {
                 }
             };
 
-//	Button.OnClickListener mTakePicSOnClickListener =
-//		new Button.OnClickListener() {
-//		@Override
-//		public void onClick(View v) {
-//			dispatchTakePictureIntent(ACTION_TAKE_PHOTO_S);
-//		}
-//	};
-//
-//	Button.OnClickListener mTakeVidOnClickListener =
-//		new Button.OnClickListener() {
-//		@Override
-//		public void onClick(View v) {
-//			dispatchTakeVideoIntent();
-//		}
-//	};
 
     /**     * Called when the activity is first created.
      */
@@ -319,7 +269,6 @@ public class PhotoIntentActivity extends Activity {
 
         file = new File( Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES) + "/CameraSample");
-
 
         if (file.isDirectory()) {
             listFile = file.listFiles();
@@ -343,55 +292,40 @@ public class PhotoIntentActivity extends Activity {
 
         // to create ListView
         adapter = new
-                LazyAdapter(PhotoIntentActivity.this, FileNameStrings, FileNameStrings);
+                LazyAdapter(PhotoIntentActivity.this, FilePathStrings, FileNameStrings);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//                Toast.makeText(PhotoIntentActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-//
-//            }});
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                adapter.imageLoader.clearCache();
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-        //list.setOnClickListener(listener);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id){
+                File testFile = new File( Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES) + "/CameraSample");
+                File[] listOfFiles = testFile.listFiles();
+                String path = listOfFiles[pos].getAbsolutePath();
+                AlertDialog.Builder builder = new AlertDialog.Builder(PhotoIntentActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View loadedImageView = inflater.inflate(R.layout.image_preview, null);
+                builder.setView(loadedImageView);
+                ImageView imgView = (ImageView)view.findViewById(R.id.img);
+                imgView.setImageBitmap(BitmapFactory.decodeFile(path));
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
 
 
-//		mImageView = (ImageView) findViewById(R.id.imageView1);
-//
-//		mVideoView = (VideoView) findViewById(R.id.videoView1);
+            }});
+
         mImageBitmap = null;
         mVideoUri = null;
 
         Button picBtn = (Button) findViewById(R.id.btnIntend);
-        Log.d("SAIMBHI", "Value of mTakePicOnClickListener:" + mTakePicOnClickListener.toString());
         setBtnListenerOrDisable(
                 picBtn,
                 mTakePicOnClickListener,
                 MediaStore.ACTION_IMAGE_CAPTURE
         );
-
-//		Button picSBtn = (Button) findViewById(R.id.btnIntendS);
-//		setBtnListenerOrDisable(
-//				picSBtn,
-//				mTakePicSOnClickListener,
-//				MediaStore.ACTION_IMAGE_CAPTURE
-//		);
-
-//		Button vidBtn = (Button) findViewById(R.id.btnIntendV);
-//		setBtnListenerOrDisable(
-//				vidBtn,
-//				mTakeVidOnClickListener,
-//				MediaStore.ACTION_VIDEO_CAPTURE
-//		);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
             mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
@@ -405,10 +339,6 @@ public class PhotoIntentActivity extends Activity {
         mTess = new TessBaseAPI();
 
         checkFile(new File(datapath + "tessdata/"));
-        Log.d("SAIMBHI", "The value of mTess is:" + mTess);
-        Log.d("SAIMBHI", "The value of datapath is:" + datapath);
-
-
         mTess.init(datapath, language);
     }
 
@@ -475,20 +405,6 @@ public class PhotoIntentActivity extends Activity {
                 }
                 break;
             } // ACTION_TAKE_PHOTO_B
-
-//		case ACTION_TAKE_PHOTO_S: {
-//			if (resultCode == RESULT_OK) {
-//				handleSmallCameraPhoto(data);
-//			}
-//			break;
-//		} // ACTION_TAKE_PHOTO_S
-//
-//		case ACTION_TAKE_VIDEO: {
-//			if (resultCode == RESULT_OK) {
-//				handleCameraVideo(data);
-//			}
-//			break;
-//		} // ACTION_TAKE_VIDEO
         } // switch
     }
 

@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/layout/image_preview.xml",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/image_preview.xml"
+    },
+    {
         "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/layout/main.xml",
         "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/main.xml"
     },
