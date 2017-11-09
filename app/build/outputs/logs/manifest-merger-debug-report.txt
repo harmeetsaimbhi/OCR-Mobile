@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:2:1-22:12
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:2:1-37:12
 	package
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:3:7-50
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:3:5-48
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 	android:versionName
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:5:7-32
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:5:5-30
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 	android:versionCode
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:4:7-30
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:4:5-28
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 	xmlns:android
@@ -20,41 +20,86 @@ ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/
 	android:name
 		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:7:19-57
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:8:5-81
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:9:5-81
 	android:name
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:8:22-78
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:9:22-78
 application
-ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:10:5-21:19
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:11:5-35:19
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/b060680848c2ab476990e2eb7b9a643d726a398c/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/531cdec3ae87497f6569a9308034ee2ca741ec10/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/f9983165af4ddb420fe7a3b80497303101236bf0/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/1ffa3ea003a0557bd913bf1f9e1ceddec0e95143/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/02d7da7641d77244c48107caf0f5d8b000c2c31a/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/2ae90e233c39c70f26d3e5fd60a7c1e7323039bf/output/AndroidManifest.xml:29:5-20
 	android:label
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:10:48-80
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:14:9-41
 	android:hardwareAccelerated
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:11:9-44
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:12:9-44
 	android:icon
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:10:18-47
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:13:9-38
 	android:largeHeap
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:12:9-33
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:15:9-33
 activity#com.example.android.photobyintent.PhotoIntentActivity
-ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:13:9-19:20
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:16:9-24:20
 	android:label
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:14:19-51
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:18:13-45
 	android:name
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:13:19-54
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:17:13-48
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:15:13-18:29
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:16:17-69
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:16:25-66
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:17:17-77
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:17:27-74
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:22:27-74
+activity#com.example.android.photobyintent.ImageActivity
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:25:9-29:54
+	android:label
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:28:13-57
+	android:configChanges
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:27:13-74
+	android:theme
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:29:13-51
+	android:name
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:26:13-42
+activity#com.example.android.photobyintent.TextContentActivity
+ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:30:9-34:63
+	android:label
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:33:13-64
+	android:configChanges
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:32:13-74
+	android:theme
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:34:13-51
+	android:name
+		ADDED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml:31:13-48
 uses-sdk
 INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.rmtheis:tess-two:5.4.1] /Users/harmeetsaimbhi/.android/build-cache/c2e8b94ca986c54a429a57dd4a8ffc3bca29794a/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/b060680848c2ab476990e2eb7b9a643d726a398c/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/531cdec3ae87497f6569a9308034ee2ca741ec10/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/f9983165af4ddb420fe7a3b80497303101236bf0/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/1ffa3ea003a0557bd913bf1f9e1ceddec0e95143/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/02d7da7641d77244c48107caf0f5d8b000c2c31a/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/2ae90e233c39c70f26d3e5fd60a7c1e7323039bf/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/b060680848c2ab476990e2eb7b9a643d726a398c/output/AndroidManifest.xml:23:9-51
 	android:targetSdkVersion
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/b060680848c2ab476990e2eb7b9a643d726a398c/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/531cdec3ae87497f6569a9308034ee2ca741ec10/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/f9983165af4ddb420fe7a3b80497303101236bf0/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/1ffa3ea003a0557bd913bf1f9e1ceddec0e95143/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/02d7da7641d77244c48107caf0f5d8b000c2c31a/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/2ae90e233c39c70f26d3e5fd60a7c1e7323039bf/output/AndroidManifest.xml:25:5-27:41
+	android:value
+		ADDED from [com.android.support:support-v4:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/b060680848c2ab476990e2eb7b9a643d726a398c/output/AndroidManifest.xml:27:9-38
+	android:name
+		ADDED from [com.android.support:support-v4:26.0.0-alpha1] /Users/harmeetsaimbhi/.android/build-cache/b060680848c2ab476990e2eb7b9a643d726a398c/output/AndroidManifest.xml:26:9-47

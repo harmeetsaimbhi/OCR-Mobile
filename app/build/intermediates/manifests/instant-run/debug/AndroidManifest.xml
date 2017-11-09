@@ -12,6 +12,10 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="26.0.0-alpha1" />
+
     <application
         android:hardwareAccelerated="false"
         android:icon="@drawable/icon"
@@ -26,6 +30,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.android.photobyintent.ImageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_image"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name="com.example.android.photobyintent.TextContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_text_content"
+            android:theme="@style/FullscreenTheme" />
 
         <provider
             android:name="com.android.tools.fd.runtime.InstantRunContentProvider"

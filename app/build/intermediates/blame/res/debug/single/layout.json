@@ -4,6 +4,14 @@
         "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/image_preview.xml"
     },
     {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/layout/activity_image.xml",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/activity_image.xml"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/layout/activity_text_content.xml",
+        "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/activity_text_content.xml"
+    },
+    {
         "merged": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/res/merged/debug/layout/main.xml",
         "source": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/src/main/res/layout/main.xml"
     },

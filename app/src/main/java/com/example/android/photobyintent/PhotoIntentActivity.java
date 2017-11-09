@@ -29,9 +29,12 @@ import android.widget.VideoView;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,6 +73,12 @@ public class PhotoIntentActivity extends Activity {
     //create listView
     ListView list;
     LazyAdapter adapter;
+    Activity activity;
+    File file = null;
+    File[] listFile = null;
+    String[] FilePathStrings = null;
+    String[] FileNameStrings = null;
+
 
 
     /* Photo album for this application */
@@ -97,7 +106,7 @@ public class PhotoIntentActivity extends Activity {
         } else {
 //			Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
         }
-
+        Log.d("SAIMBHI","The images are getting stored in:" + storageDir);
         return storageDir;
     }
 
@@ -198,9 +207,8 @@ public class PhotoIntentActivity extends Activity {
         this.sendBroadcast(mediaScanIntent);
         String textFileName = (f.getName().substring(0, f.getName().length() - 4).concat(".txt"));
         generateNoteOnSD(this,textFileName,text);
-        Log.d("SAIMBHI", " \"*********************** in galleryaddpic() ***********************\"" + textFileName);
-
-
+        finish();
+        startActivity(getIntent());
     }
 
 
@@ -262,10 +270,7 @@ public class PhotoIntentActivity extends Activity {
 
         // retrireving files from the storage starts
 
-        File file = null;
-        File[] listFile = null;
-        String[] FilePathStrings = null;
-        String[] FileNameStrings = null;
+
 
         file = new File( Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES) + "/CameraSample");
@@ -297,23 +302,63 @@ public class PhotoIntentActivity extends Activity {
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            // Code for image loader
+
 
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id){
-                File testFile = new File( Environment.getExternalStoragePublicDirectory(
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id ){
+              File  testFile = new File( Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES) + "/CameraSample");
+
                 File[] listOfFiles = testFile.listFiles();
-                String path = listOfFiles[pos].getAbsolutePath();
-                AlertDialog.Builder builder = new AlertDialog.Builder(PhotoIntentActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View loadedImageView = inflater.inflate(R.layout.image_preview, null);
-                builder.setView(loadedImageView);
-                ImageView imgView = (ImageView)view.findViewById(R.id.img);
-                imgView.setImageBitmap(BitmapFactory.decodeFile(path));
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                String[] filePaths = new String[listOfFiles.length + 1];
+                for (int i = 0; i < listFile.length; i++) {
+                    // Get the path of the image file
+                    filePaths[i] = listOfFiles[i].getAbsolutePath();
 
+                }
 
+                File selectedFile = new  File(filePaths[pos]);
+                if(selectedFile.getName().contains("jpg")){
+
+                    ImageView myImage = (ImageView) findViewById(R.id.preview2);
+                    BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                    Bitmap bitmap = BitmapFactory.decodeFile(selectedFile.getAbsolutePath(), bmOptions);
+                    bitmap = Bitmap.createBitmap(bitmap);
+
+                    // second way using byte stream
+                    // sending bundle to the new activity
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+
+                    Intent photoIntent = new Intent(PhotoIntentActivity.this, ImageActivity.class);
+                    photoIntent.putExtra("picture", byteArray);
+                    startActivity(photoIntent);
+                } else {
+
+                    StringBuilder text = new StringBuilder();
+
+                    try {
+                        BufferedReader br = new BufferedReader(new FileReader(selectedFile));
+                        String line;
+
+                        while ((line = br.readLine()) != null) {
+                            text.append(line);
+                            text.append('\n');
+                        }
+                        br.close();
+                    }
+                    catch (IOException e) {
+                        throw new Error("Error reading file", e);
+                    }
+
+                    //textContentView.setText(text.toString());
+                    Intent textIntent = new Intent(PhotoIntentActivity.this, TextContentActivity.class);
+                    byte[] textBytes = text.toString().getBytes();
+                    textIntent.putExtra("text",textBytes);
+                    startActivity(textIntent);
+                }
 
             }});
 

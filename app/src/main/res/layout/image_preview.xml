@@ -4,9 +4,10 @@
     android:layout_height="match_parent" >
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/preview1"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
+
 
 
 </RelativeLayout>
