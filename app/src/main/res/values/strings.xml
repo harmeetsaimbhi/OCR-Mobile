@@ -15,6 +15,15 @@
     <string name="title_activity_image">ImageActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="APP_KEY">nxnfbw8n087u46i</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <!-- Strings related to login -->
+    <string name="sign_in">Sign in</string>
+    <string name="title_activity_login">Sign in</string>
+
 
     <string name="title_activity_text_content">TextContentActivity</string>
 </resources>

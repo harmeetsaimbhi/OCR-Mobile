@@ -13,6 +13,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -114,11 +120,26 @@ public class TextContentActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         byte[] byteArray = extras.getByteArray("text");
+        Charset charset = Charset.forName("UTF-8");
+        CharsetDecoder decoder = charset.newDecoder();
+
+//ByteBuffer.wrap simply wraps the byte array, it does not allocate new memory for it
+        ByteBuffer srcBuffer = ByteBuffer.wrap(byteArray);
+//Now, we decode our srcBuffer into a new CharBuffer (yes, new memory allocated here, no can do)
+        try {
+            CharBuffer resBuffer = decoder.decode(srcBuffer);
+
+
+//CharBuffer implements CharSequence interface, which StringBuilder fully support in it's methods
+        StringBuilder yourStringBuilder = new StringBuilder(resBuffer);
         String testString;
        // Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         TextView textContentView = (TextView) findViewById(R.id.fullscreen_content);
-        Log.d("SAIMBHI","the text is: "+ byteArray.toString());
-        textContentView.setText(byteArray.toString());
+        Log.d("SAIMBHI","the text is: "+ yourStringBuilder);
+        textContentView.setText(yourStringBuilder);
+        } catch(IOException e){
+            throw new Error("Error converting into string file", e);
+        }
     }
 
     @Override
