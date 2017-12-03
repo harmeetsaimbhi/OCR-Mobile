@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">748420742621-u1ab9fi3s2lm6labch7rp0us670jafof.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">748420742621</string>
+    <string name="google_api_key" translatable="false">AIzaSyAH4T-3azEj8615sxuzxRmhOIGqer-20hI</string>
+    <string name="google_app_id" translatable="false">1:748420742621:android:d4a4c03f92358c76</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAH4T-3azEj8615sxuzxRmhOIGqer-20hI</string>
+    <string name="project_id" translatable="false">docscanner-aeef9</string>
+</resources>

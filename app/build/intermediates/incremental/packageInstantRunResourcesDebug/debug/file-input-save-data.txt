@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Sun Dec 03 01:27:48 PST 2017
+0.baseType=DIRECTORY
+0.base=/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/assets/debug
+0.path=tessdata/eng.traineddata
+0.set=ASSET
+count=1

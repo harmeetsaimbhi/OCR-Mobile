@@ -4,8 +4,9 @@ package com.example.android.photobyintent;
  * Created by harmeetsaimbhi on 2017-10-24.
  */
 
-import java.io.File;
 import android.content.Context;
+
+import java.io.File;
 
 public class FileCache {
 

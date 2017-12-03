@@ -1,8 +1,8 @@
 package com.example.android.photobyintent;
 
-import java.io.File;
-
 import android.os.Environment;
+
+import java.io.File;
 
 public final class BaseAlbumDirFactory extends AlbumStorageDirFactory {
 

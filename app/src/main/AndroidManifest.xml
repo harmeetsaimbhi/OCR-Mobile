@@ -24,22 +24,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.dropbox.client2.android.AuthActivity"
-            android:configChanges="orientation|keyboard"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
-            <intent-filter>
-
-                <!-- Change this to be db- followed by your app key -->
-                <data android:scheme="db-nxnfbw8n087u46i" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".ImageActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_image"
@@ -49,6 +33,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_text_content"
             android:theme="@style/FullscreenTheme" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

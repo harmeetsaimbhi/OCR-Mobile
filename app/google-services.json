@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "748420742621",
+    "project_id": "docscanner-aeef9"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748420742621:android:d4a4c03f92358c76",
+        "android_client_info": {
+          "package_name": "com.example.android.photobyintent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748420742621-u1ab9fi3s2lm6labch7rp0us670jafof.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "748420742621-2oj4ma4vmanfh5d0274do00har3ptd6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.photobyintent",
+            "certificate_hash": "dc85964a1fc647d1dff7248887bd2785db7e1933"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH4T-3azEj8615sxuzxRmhOIGqer-20hI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
