@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/harmeetsaimbhi/AndroidStudioProjects/PhotoIntentActivity1/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/669e3b91353f86e42219490aec610b01/res/values-v24/values-v24.xml",

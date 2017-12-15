@@ -3,6 +3,7 @@ package com.example.android.photobyintent;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
@@ -13,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -39,9 +41,25 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //google drive dependencies
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.drive.CreateFileActivityOptions;
+import com.google.android.gms.drive.Drive;
+import com.google.android.gms.drive.DriveClient;
+import com.google.android.gms.drive.DriveContents;
+import com.google.android.gms.drive.DriveResourceClient;
+import com.google.android.gms.drive.MetadataChangeSet;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 
 
 
@@ -77,6 +95,30 @@ public class PhotoIntentActivity extends Activity {
     private static final int ACTION_TAKE_PHOTO_B = 1;
 
     //GoogleDrive variables
+    //GoogleDrive variables
+    private static final String TAG = "SAIMBHI";
+
+    /**
+     * Request code for google sign-in
+     */
+    protected static final int REQUEST_CODE_SIGN_IN = 0;
+    private static final int REQUEST_CODE_CREATOR = 2;
+
+    /**
+     * Request code for the Drive picker
+     */
+    protected static final int REQUEST_CODE_OPEN_ITEM = 1;
+
+    /**
+     * Handles high-level drive functions like sync
+     */
+    private DriveClient mDriveClient;
+
+    /**
+     * Handle access to Drive resources/files.
+     */
+    private DriveResourceClient mDriveResourceClient;
+
 
     /* Photo album for this application */
     private String getAlbumName() {
@@ -152,6 +194,10 @@ public class PhotoIntentActivity extends Activity {
 
 		/* Decode the JPEG file into a Bitmap */
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+
+        // Save to Google Drive
+        saveFileToDrive(bitmap);
+
 
 //		Matrix matrix = new Matrix();
 //		matrix.postRotate(90);
@@ -265,6 +311,7 @@ public class PhotoIntentActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
         Log.d("TESTING", "inside onCreate before sign in");
+        signIn();
 
         // retrireving files from the storage starts
         file = new File(Environment.getExternalStoragePublicDirectory(
@@ -447,6 +494,26 @@ public class PhotoIntentActivity extends Activity {
                 }
                 break;
             }
+            case REQUEST_CODE_SIGN_IN:
+                if (resultCode != RESULT_OK) {
+                    // Sign-in may fail or be cancelled by the user. For this sample, sign-in is
+                    // required and is fatal. For apps where sign-in is optional, handle
+                    // appropriately
+                    Log.e(TAG, "Sign-in failed.");
+                    finish();
+                    return;
+                }
+                Log.d(TAG,"inside ActivityResult");
+                Task<GoogleSignInAccount> getAccountTask =
+                        GoogleSignIn.getSignedInAccountFromIntent(data);
+                if (getAccountTask.isSuccessful()) {
+                    initializeDriveClient(getAccountTask.getResult());
+                    Log.d(TAG,"the account is"+getAccountTask.getResult());
+                } else {
+                    Log.e(TAG, "Sign-in failed.");
+                    finish();
+                }
+                break;
 
 
         }
@@ -518,7 +585,114 @@ public class PhotoIntentActivity extends Activity {
     }
 
     //GOOGLE DRIVE METHODS FROM HERE
+    /**
+     * Starts the sign-in process and initializes the Drive client.
+     */
+    protected void signIn() {
+        Log.d(TAG,"inside signIn()");
+        Set<Scope> requiredScopes = new HashSet<>(2);
+        requiredScopes.add(Drive.SCOPE_FILE);
+        requiredScopes.add(Drive.SCOPE_APPFOLDER);
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (signInAccount != null && signInAccount.getGrantedScopes().containsAll(requiredScopes)) {
+            initializeDriveClient(signInAccount);
+            Log.d(TAG,"initialized");
+        } else {
+            GoogleSignInOptions signInOptions =
+                    new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestScopes(Drive.SCOPE_FILE)
+                            .requestScopes(Drive.SCOPE_APPFOLDER)
+                            .build();
+            Log.d(TAG,"creating GoogleSignInClient");
+            GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, signInOptions);
+            startActivityForResult(googleSignInClient.getSignInIntent(), REQUEST_CODE_SIGN_IN);
+        }
+    }
 
-//
+    /**
+     * Continues the sign-in process, initializing the Drive clients with the current
+     * user's account.
+     */
+    private void initializeDriveClient(GoogleSignInAccount signInAccount) {
+        mDriveClient = Drive.getDriveClient(getApplicationContext(), signInAccount);
+        mDriveResourceClient = Drive.getDriveResourceClient(getApplicationContext(), signInAccount);
+        Log.d(TAG,"Signed In");
+    }
+
+    /** Create a new file and save it to Drive. */
+    private void saveFileToDrive(Bitmap mBitmapToSave) {
+        // Start by creating a new contents, and setting a callback.
+        Log.i(TAG, "Creating new contents.");
+        Log.d(TAG, "inside saveFileToDrive");
+        final Bitmap image = mBitmapToSave;
+
+        mDriveResourceClient
+                .createContents()
+                .continueWithTask(
+                        new Continuation<DriveContents, Task<Void>>() {
+                            @Override
+                            public Task<Void> then(@NonNull Task<DriveContents> task) throws Exception {
+                                Log.d(TAG,"Calling the last method");
+                                return createFileIntentSender(task.getResult(), image);
+                            }
+                        })
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Failed to create new contents.", e);
+                            }
+                        });
+    }
+
+    /**
+     * Creates an {@link IntentSender} to start a dialog activity with configured {@link
+     * CreateFileActivityOptions} for user to create a new photo in Drive.
+     */
+    private Task<Void> createFileIntentSender(DriveContents driveContents, Bitmap image) {
+        Log.i(TAG, "New contents created.");
+        Log.d("TESTING", "inside createFileIntentSender");
+        // Get an output stream for the contents.
+        OutputStream outputStream = driveContents.getOutputStream();
+        // Write the bitmap data from it.
+        ByteArrayOutputStream bitmapStream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, bitmapStream);
+        try {
+            outputStream.write(bitmapStream.toByteArray());
+        } catch (IOException e) {
+            Log.w(TAG, "Unable to write file contents.", e);
+        }
+
+        // Create the initial metadata - MIME type and title.
+        // Note that the user will be able to change the title later.
+        MetadataChangeSet metadataChangeSet =
+                new MetadataChangeSet.Builder()
+                        .setMimeType("image/jpeg")
+                        .setTitle("Photo.jpeg")
+                        .build();
+
+        Log.i(TAG, "New contents created 2");
+        // Set up options to configure and display the create file activity.
+        CreateFileActivityOptions createFileActivityOptions =
+                new CreateFileActivityOptions.Builder()
+                        .setInitialMetadata(metadataChangeSet)
+                        .setInitialDriveContents(driveContents)
+                        .build();
+
+        Log.i(TAG, "New contents create 3");
+
+        return mDriveClient
+                .newCreateFileActivityIntentSender(createFileActivityOptions)
+                .continueWith(
+                        new Continuation<IntentSender, Void>() {
+                            @Override
+                            public Void then(@NonNull Task<IntentSender> task) throws Exception {
+                                Log.i(TAG, "New contents created 4");
+                                Toast.makeText(getApplicationContext(),"Filed Uploaded Succesfully",Toast.LENGTH_LONG);
+                                startIntentSenderForResult(task.getResult(), REQUEST_CODE_CREATOR, null, 0, 0, 0);
+                                return null;
+                            }
+                        });
+    }
 
 }
