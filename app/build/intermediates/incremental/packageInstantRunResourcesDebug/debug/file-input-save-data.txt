@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Dec 14 23:25:23 PST 2017
+#Fri Dec 15 00:07:36 PST 2017
 0.baseType=DIRECTORY
 0.base=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/assets/debug
 0.path=tessdata/eng.traineddata

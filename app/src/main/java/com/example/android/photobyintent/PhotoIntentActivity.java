@@ -39,6 +39,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -363,20 +364,37 @@ public class PhotoIntentActivity extends Activity {
                 File selectedFile = new File(filePaths[pos]);
                 if (selectedFile.getName().contains("jpg")) {
 
-                    ImageView myImage = (ImageView) findViewById(R.id.preview2);
+                   // ImageView myImage = (ImageView) findViewById(R.id.preview2);
                     BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                     Bitmap bitmap = BitmapFactory.decodeFile(selectedFile.getAbsolutePath(), bmOptions);
-                    bitmap = Bitmap.createBitmap(bitmap);
-
+//                    bitmap = Bitmap.createBitmap(bitmap);
+//                    Log.d("SAIMBHI", "the byte count of selected bitmaps is:"+bitmap.getByteCount());
                     // second way using byte stream
                     // sending bundle to the new activity
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                     byte[] byteArray = stream.toByteArray();
 
+
+//                    int width = bitmap.getWidth();
+//                    int height = bitmap.getHeight();
+//
+//                    int size = bitmap.getRowBytes() * bitmap.getHeight();
+//                    ByteBuffer byteBuffer = ByteBuffer.allocate(size);
+//                    bitmap.copyPixelsToBuffer(byteBuffer);
+//                    byte[] byteArray = byteBuffer.array();
+
                     Intent photoIntent = new Intent(PhotoIntentActivity.this, ImageActivity.class);
-                    photoIntent.putExtra("picture", byteArray);
+                    photoIntent.putExtra("image", byteArray);
+                    //photoIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(photoIntent);
+
+
+//                    Bundle extras = new Bundle();
+//                    extras.putParcelable("imagebitmap", bitmap);
+//                    photoIntent.putExtras(extras);
+//                    startActivity(photoIntent);
+
                 } else {
 
                     StringBuilder text = new StringBuilder();

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -89,6 +90,7 @@ public class ImageActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("SAIMBHI", "Inside OnCreate of ImageActivity");
 
         setContentView(R.layout.activity_image);
 
@@ -111,10 +113,15 @@ public class ImageActivity extends Activity {
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         Bundle extras = getIntent().getExtras();
-        byte[] byteArray = extras.getByteArray("picture");
+        byte[] byteArray = extras.getByteArray("image");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         ImageView image = (ImageView) findViewById(R.id.preview2);
         image.setImageBitmap(bmp);
+
+//        Bundle extras = getIntent().getExtras();
+//        Bitmap bmp = (Bitmap) extras.getParcelable("imagebitmap");
+//
+//        image.setImageBitmap(bmp);
     }
 
     @Override
