@@ -1,4 +1,4 @@
-#Wed Jan 31 21:16:59 PST 2018
+#Sun Feb 18 15:08:22 PST 2018
 path.1=classes.dex
 path.0=classes.dex
 renamed.5=classes6.dex
@@ -7,12 +7,12 @@ renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.5=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/282
-base.4=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/279
-base.3=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/280
-base.2=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/283
-base.1=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/281
-base.0=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/278
+base.5=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/546
+base.4=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/548
+base.3=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/545
+base.2=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/547
+base.1=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/544
+base.0=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/549
 path.5=classes.dex
 path.4=classes.dex
 path.3=classes.dex

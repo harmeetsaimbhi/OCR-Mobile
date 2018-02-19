@@ -16,10 +16,13 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -41,9 +44,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 //google drive dependencies
@@ -94,6 +99,13 @@ public class PhotoIntentActivity extends Activity {
     String[] FilePathStrings = null;
     String[] FileNameStrings = null;
     private static final int ACTION_TAKE_PHOTO_B = 1;
+
+    // filter declarations
+    EditText editsearch;
+    ListView filterList;
+    String[] rank;
+    String[] country;
+    ArrayList<Combination> arraylist = new ArrayList<Combination>();
 
     //GoogleDrive variables
     //GoogleDrive variables
@@ -168,13 +180,6 @@ public class PhotoIntentActivity extends Activity {
 
     private String setPic() {
 
-		/* There isn't enough memory to open up more than a couple camera photos */
-        /* So pre-scale the target bitmap into which the file is decoded */
-
-		/* Get the size of the ImageView */
-//		int targetW = mImageView.getWidth();
-//		int targetH = mImageView.getHeight();
-
 		/* Get the size of the image */
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
@@ -184,9 +189,7 @@ public class PhotoIntentActivity extends Activity {
 
 		/* Figure out which way needs to be reduced less */
         int scaleFactor = 1;
-//		if ((targetW > 0) || (targetH > 0)) {
-//			scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-//		}
+
 
 		/* Set bitmap options to scale the image decode target */
         bmOptions.inJustDecodeBounds = false;
@@ -210,17 +213,7 @@ public class PhotoIntentActivity extends Activity {
         OCRresult = mTess.getUTF8Text();
         Log.d("SAIMBHI", "The OCR Result is:" + OCRresult);
         return OCRresult;
-        // generateNoteOnSD(context,)
-//		TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
-//		OCRTextView.setText(OCRresult);
 
-
-
-		/* Associate the Bitmap to the ImageView */
-//		mImageView.setImageBitmap(bitmap);
-//		mVideoUri = null;
-//		mImageView.setVisibility(View.VISIBLE);
-//		mVideoView.setVisibility(View.INVISIBLE);
     }
 
     public void generateNoteOnSD(Context context, String sFileName, String sBody) {
@@ -317,9 +310,10 @@ public class PhotoIntentActivity extends Activity {
         // retrireving files from the storage starts
         file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES) + "/CameraSample");
-
+        Log.d("SAIMBHI", "The size is:" + file.length());
         if (file.isDirectory()) {
             listFile = file.listFiles();
+            Log.d("SAIMBHI", "The size is:" + listFile.length);
 
             // Create a String array for FilePathStrings
             FilePathStrings = new String[listFile.length];
@@ -336,12 +330,22 @@ public class PhotoIntentActivity extends Activity {
 
             }
         }
+        Log.d("SAIMBHI", "The FileNameStrings is:" + FileNameStrings.length);
+        Log.d("SAIMBHI", "The FilePathStrings is:" + FilePathStrings.length);
 
+        // passing combination class stuff as an arraylist to LazyAdapter
+        for (int i = 0; i < FileNameStrings.length; i++)
+        {
+            Combination combo = new Combination(FileNameStrings[i], FilePathStrings[i]);
+            // Binds all strings into an array
+            arraylist.add(combo);
+        }
 
         // to create ListView
         adapter = new
-                LazyAdapter(PhotoIntentActivity.this, FilePathStrings, FileNameStrings);
+                LazyAdapter(PhotoIntentActivity.this, this.arraylist);
         list = (ListView) findViewById(R.id.list);
+
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -363,37 +367,19 @@ public class PhotoIntentActivity extends Activity {
 
                 File selectedFile = new File(filePaths[pos]);
                 if (selectedFile.getName().contains("jpg")) {
-
-                   // ImageView myImage = (ImageView) findViewById(R.id.preview2);
                     BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                     Bitmap bitmap = BitmapFactory.decodeFile(selectedFile.getAbsolutePath(), bmOptions);
-//                    bitmap = Bitmap.createBitmap(bitmap);
-//                    Log.d("SAIMBHI", "the byte count of selected bitmaps is:"+bitmap.getByteCount());
+
                     // second way using byte stream
                     // sending bundle to the new activity
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 10, stream);
                     byte[] byteArray = stream.toByteArray();
-
-
-//                    int width = bitmap.getWidth();
-//                    int height = bitmap.getHeight();
-//
-//                    int size = bitmap.getRowBytes() * bitmap.getHeight();
-//                    ByteBuffer byteBuffer = ByteBuffer.allocate(size);
-//                    bitmap.copyPixelsToBuffer(byteBuffer);
-//                    byte[] byteArray = byteBuffer.array();
 
                     Intent photoIntent = new Intent(PhotoIntentActivity.this, ImageActivity.class);
                     photoIntent.putExtra("image", byteArray);
-                    //photoIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                     startActivity(photoIntent);
-
-
-//                    Bundle extras = new Bundle();
-//                    extras.putParcelable("imagebitmap", bitmap);
-//                    photoIntent.putExtras(extras);
-//                    startActivity(photoIntent);
 
                 } else {
 
@@ -412,13 +398,53 @@ public class PhotoIntentActivity extends Activity {
                         throw new Error("Error reading file", e);
                     }
 
-                    //textContentView.setText(text.toString());
                     Intent textIntent = new Intent(PhotoIntentActivity.this, TextContentActivity.class);
                     byte[] textBytes = text.toString().getBytes();
                     textIntent.putExtra("text", textBytes);
                     startActivity(textIntent);
                 }
 
+            }
+        });
+
+        // code for filter
+
+        for (int i = 0; i < FileNameStrings.length; i++)
+        {
+            Combination combo = new Combination(FilePathStrings[i], FileNameStrings[i]);
+            // Binds all strings into an array
+            arraylist.add(combo);
+        }
+
+        // Pass results to ListViewAdapter Class
+        //filterAdapter = new ListViewAdapter(this, arraylist);
+
+        // Binds the Adapter to the ListView
+        //list.setAdapter(adapter);
+
+        // Locate the EditText in listview_main.xml
+        editsearch = (EditText) findViewById(R.id.search); // ********to be added**********
+
+        // Capture Text in EditText
+        editsearch.addTextChangedListener(new TextWatcher() { //********to be added**********
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.filter(text); //important to active
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+                                      int arg3) {
+                // TODO Auto-generated method stub
             }
         });
 

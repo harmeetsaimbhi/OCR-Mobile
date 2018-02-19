@@ -16,6 +16,15 @@
         android:layout_height="wrap_content"
         android:text="Scan a document" />
 
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <requestFocus />
+    </EditText>
+
+
 
     <ListView
         android:id="@+id/list"

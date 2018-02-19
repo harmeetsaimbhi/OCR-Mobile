@@ -13,30 +13,37 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class LazyAdapter extends BaseAdapter {
 
     private Activity activity;
-    private String[] data;
-    private String[] name;
     private static LayoutInflater inflater=null;
     public ImageLoader imageLoader;
+    private List<Combination> comboList = null;
+    private ArrayList<Combination> arraylist;
 
-    public LazyAdapter(Activity a, String[] d, String[] t) {
+    public LazyAdapter(Activity a, List<Combination> comboList) {
         activity = a;
-        data=d;
-        name = t;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         imageLoader=new ImageLoader(activity.getApplicationContext());
+        this.comboList = comboList;
+        this.arraylist = new ArrayList<Combination>();
+        this.arraylist.addAll(comboList);
     }
-
+    @Override
     public int getCount() {
-        return data.length;
+        return comboList.size();
     }
 
-    public Object getItem(int position) {
-        return position;
+    @Override
+    public Combination getItem(int position) {
+        return comboList.get(position);
     }
 
+    @Override
     public long getItemId(int position) {
         return position;
     }
@@ -48,8 +55,24 @@ public class LazyAdapter extends BaseAdapter {
 
         TextView text=(TextView)vi.findViewById(R.id.txt);;
         ImageView image=(ImageView)vi.findViewById(R.id.img);
-        text.setText(name[position]);
-        imageLoader.DisplayImage(data[position], image);
+        text.setText(this.arraylist.get(position).getFilePathStrings());
+        imageLoader.DisplayImage(this.arraylist.get(position).getFileNameStrings(), image);
         return vi;
+    }
+
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        comboList.clear();
+        if (charText.length() == 0) {
+            comboList.addAll(arraylist);
+        } else {
+            for (Combination wp : arraylist) {
+                if (wp.getFilePathStrings().toLowerCase(Locale.getDefault())
+                        .contains(charText)) {
+                    comboList.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }
