@@ -22,14 +22,16 @@ import java.util.Locale;
 public class LazyAdapter extends BaseAdapter {
 
     private Activity activity;
-    private static LayoutInflater inflater = null;
+    Context mContext ;
+    LayoutInflater inflater = null;
     public ImageLoader imageLoader;
     private List<Combination> comboList = null;
     private ArrayList<Combination> arraylist;
 
-    public LazyAdapter(Activity a, List<Combination> comboList) {
+    public LazyAdapter(Context context, Activity a, List<Combination> comboList) {
+        mContext = context;
         activity = a;
-        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = LayoutInflater.from(mContext);
         imageLoader = new ImageLoader(activity.getApplicationContext());
         this.comboList = comboList;
         this.arraylist = new ArrayList<Combination>();
@@ -37,11 +39,11 @@ public class LazyAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView fileName;
-        TextView filePath;
-        TextView population;
-        ImageView flag;
+        TextView text;
+        ImageView image;
     }
+
+
 
     @Override
     public int getCount() {
@@ -59,16 +61,21 @@ public class LazyAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View vi = convertView;
-        if (convertView == null)
-            vi = inflater.inflate(R.layout.list_single, null);
+        final ViewHolder holder;
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.list_single, null);
+            holder.text = (TextView) convertView.findViewById(R.id.txt);
+            holder.image = (ImageView) convertView.findViewById(R.id.img);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-        TextView text = (TextView) vi.findViewById(R.id.txt);
-        ;
-        ImageView image = (ImageView) vi.findViewById(R.id.img);
-        text.setText(this.arraylist.get(position).getFilePathStrings());
-        imageLoader.DisplayImage(this.arraylist.get(position).getFileNameStrings(), image);
-        return vi;
+
+        holder.text.setText(comboList.get(position).getFilePathStrings());
+        imageLoader.DisplayImage(comboList.get(position).getFileNameStrings(), holder.image);
+        return convertView;
     }
 
 

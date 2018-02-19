@@ -343,14 +343,39 @@ public class PhotoIntentActivity extends Activity {
 
         // to create ListView
         adapter = new
-                LazyAdapter(PhotoIntentActivity.this, this.arraylist);
+                LazyAdapter(this,PhotoIntentActivity.this, this.arraylist);
         list = (ListView) findViewById(R.id.list);
 
         list.setAdapter(adapter);
 
+        // Locate the EditText in listview_main.xml
+        editsearch = (EditText) findViewById(R.id.search); // ********to be added**********
+
+        // Capture Text in EditText
+        editsearch.addTextChangedListener(new TextWatcher() { //********to be added**********
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.filter(text); //important to active
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+                                      int arg3) {
+                // TODO Auto-generated method stub
+            }
+        });
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // Code for image loader
-
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -407,47 +432,6 @@ public class PhotoIntentActivity extends Activity {
             }
         });
 
-        // code for filter
-
-        for (int i = 0; i < FileNameStrings.length; i++)
-        {
-            Combination combo = new Combination(FilePathStrings[i], FileNameStrings[i]);
-            // Binds all strings into an array
-            arraylist.add(combo);
-        }
-
-        // Pass results to ListViewAdapter Class
-        //filterAdapter = new ListViewAdapter(this, arraylist);
-
-        // Binds the Adapter to the ListView
-        //list.setAdapter(adapter);
-
-        // Locate the EditText in listview_main.xml
-        editsearch = (EditText) findViewById(R.id.search); // ********to be added**********
-
-        // Capture Text in EditText
-        editsearch.addTextChangedListener(new TextWatcher() { //********to be added**********
-
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                // TODO Auto-generated method stub
-                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                adapter.filter(text); //important to active
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence arg0, int arg1,
-                                          int arg2, int arg3) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-                                      int arg3) {
-                // TODO Auto-generated method stub
-            }
-        });
-
         mImageBitmap = null;
         mVideoUri = null;
 
@@ -471,6 +455,24 @@ public class PhotoIntentActivity extends Activity {
 
         checkFile(new File(datapath + "tessdata/"));
         mTess.init(datapath, language);
+
+        // code for filter
+
+//        for (int i = 0; i < FileNameStrings.length; i++)
+//        {
+//            Combination combo = new Combination(FilePathStrings[i], FileNameStrings[i]);
+//            // Binds all strings into an array
+//            arraylist.add(combo);
+//        }
+
+        // Pass results to ListViewAdapter Class
+        //filterAdapter = new ListViewAdapter(this, arraylist);
+
+        // Binds the Adapter to the ListView
+        //list.setAdapter(adapter);
+
+
+
     }
 
     private void copyFiles() {
