@@ -6,6 +6,8 @@ package com.example.android.photobyintent;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,19 +22,27 @@ import java.util.Locale;
 public class LazyAdapter extends BaseAdapter {
 
     private Activity activity;
-    private static LayoutInflater inflater=null;
+    private static LayoutInflater inflater = null;
     public ImageLoader imageLoader;
     private List<Combination> comboList = null;
     private ArrayList<Combination> arraylist;
 
     public LazyAdapter(Activity a, List<Combination> comboList) {
         activity = a;
-        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        imageLoader=new ImageLoader(activity.getApplicationContext());
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        imageLoader = new ImageLoader(activity.getApplicationContext());
         this.comboList = comboList;
         this.arraylist = new ArrayList<Combination>();
         this.arraylist.addAll(comboList);
     }
+
+    public class ViewHolder {
+        TextView fileName;
+        TextView filePath;
+        TextView population;
+        ImageView flag;
+    }
+
     @Override
     public int getCount() {
         return comboList.size();
@@ -49,16 +59,18 @@ public class LazyAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View vi=convertView;
-        if(convertView==null)
+        View vi = convertView;
+        if (convertView == null)
             vi = inflater.inflate(R.layout.list_single, null);
 
-        TextView text=(TextView)vi.findViewById(R.id.txt);;
-        ImageView image=(ImageView)vi.findViewById(R.id.img);
+        TextView text = (TextView) vi.findViewById(R.id.txt);
+        ;
+        ImageView image = (ImageView) vi.findViewById(R.id.img);
         text.setText(this.arraylist.get(position).getFilePathStrings());
         imageLoader.DisplayImage(this.arraylist.get(position).getFileNameStrings(), image);
         return vi;
     }
+
 
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
@@ -67,12 +79,15 @@ public class LazyAdapter extends BaseAdapter {
             comboList.addAll(arraylist);
         } else {
             for (Combination wp : arraylist) {
-                if (wp.getFilePathStrings().toLowerCase(Locale.getDefault())
-                        .contains(charText)) {
-                    comboList.add(wp);
+                if (wp.getFileNameStrings().substring((wp.getFileNameStrings().length() - 3), (wp.getFileNameStrings().length())).equals("txt")) {
+                    Log.d("TESTING", "The content is:" + wp.getText(wp.getFileNameStrings()));
+                    if (wp.getText(wp.getFileNameStrings())
+                            .contains(charText)) {
+                        comboList.add(wp);
+                    }
                 }
             }
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
     }
 }
