@@ -42,7 +42,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,7 +54,6 @@ import java.util.Set;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.drive.CreateFileActivityOptions;
 import com.google.android.gms.drive.Drive;
@@ -106,6 +104,7 @@ public class PhotoIntentActivity extends Activity {
     String[] rank;
     String[] country;
     ArrayList<Combination> arraylist = new ArrayList<Combination>();
+    Combination combo ;
 
     //GoogleDrive variables
     //GoogleDrive variables
@@ -231,7 +230,7 @@ public class PhotoIntentActivity extends Activity {
             writer.close();
             Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
-            Log.d("SAIMBHI", "Error in creating a text file");
+            Log.d("SAIMBHI", "Error in creating a name file");
             e.printStackTrace();
         }
     }
@@ -336,7 +335,7 @@ public class PhotoIntentActivity extends Activity {
         // passing combination class stuff as an arraylist to LazyAdapter
         for (int i = 0; i < FileNameStrings.length; i++)
         {
-            Combination combo = new Combination(FileNameStrings[i], FilePathStrings[i]);
+             combo = new Combination(FileNameStrings[i], FilePathStrings[i], null);
             // Binds all strings into an array
             arraylist.add(combo);
         }
@@ -357,8 +356,8 @@ public class PhotoIntentActivity extends Activity {
             @Override
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
-                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                adapter.filter(text); //important to active
+                //String text = combo.getFilterText();
+
             }
 
             @Override
@@ -371,6 +370,8 @@ public class PhotoIntentActivity extends Activity {
             public void onTextChanged(CharSequence arg0, int arg1, int arg2,
                                       int arg3) {
                 // TODO Auto-generated method stub
+                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.filter(text); //important to active
             }
         });
 
@@ -425,7 +426,7 @@ public class PhotoIntentActivity extends Activity {
 
                     Intent textIntent = new Intent(PhotoIntentActivity.this, TextContentActivity.class);
                     byte[] textBytes = text.toString().getBytes();
-                    textIntent.putExtra("text", textBytes);
+                    textIntent.putExtra("name", textBytes);
                     startActivity(textIntent);
                 }
 

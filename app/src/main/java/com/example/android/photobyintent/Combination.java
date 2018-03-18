@@ -1,6 +1,6 @@
 package com.example.android.photobyintent;
 
-import android.content.Intent;
+import android.text.SpannableStringBuilder;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,17 +8,27 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Combination {
-	private String FilePathStrings;
-	private String FileNameStrings;
+	private String fileName;
+	private String filePath;
+	private SpannableStringBuilder filterText;
 
-	public Combination(String FilePathStrings, String FileNameStrings) {
-		this.FilePathStrings = FilePathStrings;
-		this.FileNameStrings = FileNameStrings;
+	public Combination(String fileName, String filePath, SpannableStringBuilder filterText) {
+		this.fileName = fileName;
+		this.filePath = filePath;
+		this.filterText = filterText;
 
 	}
 
-	public String getFilePathStrings() {
-		return this.FilePathStrings;
+	public String getFileName() {
+		return this.fileName;
+	}
+
+	public SpannableStringBuilder getFilterText() {
+		return this.filterText;
+	}
+
+	public void setFilterText(SpannableStringBuilder text) {
+		this.filterText = text ;
 	}
 
 	public String getText(String path) {
@@ -40,8 +50,8 @@ public class Combination {
 		return text.toString();
 	}
 
-	public String getFileNameStrings() {
-		return this.FileNameStrings;
+	public String getFilePath() {
+		return this.filePath;
 	}
 
 }

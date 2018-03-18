@@ -1,4 +1,4 @@
-#Sun Feb 18 23:09:47 PST 2018
-base.0=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/598
+#Sat Mar 17 13:29:27 PDT 2018
+base.0=/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/transforms/dexMerger/debug/66
 path.0=classes.dex
 renamed.0=classes.dex

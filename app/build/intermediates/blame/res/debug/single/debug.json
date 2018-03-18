@@ -1096,12 +1096,12 @@
         "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4e8e2cd6249529f816d75ae4fe68d1b8/res/drawable-mdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/layout_abc_expanded_menu_layout.xml.flat",
-        "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4e8e2cd6249529f816d75ae4fe68d1b8/res/layout/abc_expanded_menu_layout.xml"
-    },
-    {
         "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
         "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4e8e2cd6249529f816d75ae4fe68d1b8/res/drawable-mdpi-v4/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/layout_abc_expanded_menu_layout.xml.flat",
+        "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4e8e2cd6249529f816d75ae4fe68d1b8/res/layout/abc_expanded_menu_layout.xml"
     },
     {
         "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
@@ -1668,12 +1668,12 @@
         "source": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/generated/res/pngs/debug/drawable-hdpi/ic_dashboard_black_24dp.png"
     },
     {
-        "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
-        "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4e8e2cd6249529f816d75ae4fe68d1b8/res/drawable-xhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable-hdpi_image2.png.flat",
         "source": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/src/main/res/drawable-hdpi/image2.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
+        "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4e8e2cd6249529f816d75ae4fe68d1b8/res/drawable-xhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -1852,12 +1852,12 @@
         "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/play-services-base-11.6.0.aar/2b54b009190851b1b08b77264a02d53b/res/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
-        "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_dark_focused.xml.flat",
-        "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/play-services-base-11.6.0.aar/2b54b009190851b1b08b77264a02d53b/res/drawable/common_google_signin_btn_text_dark_focused.xml"
-    },
-    {
         "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
         "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4e8e2cd6249529f816d75ae4fe68d1b8/res/drawable-mdpi-v4/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_dark_focused.xml.flat",
+        "source": "/Users/harmeetsaimbhi/.gradle/caches/transforms-1/files-1.1/play-services-base-11.6.0.aar/2b54b009190851b1b08b77264a02d53b/res/drawable/common_google_signin_btn_text_dark_focused.xml"
     },
     {
         "merged": "/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",

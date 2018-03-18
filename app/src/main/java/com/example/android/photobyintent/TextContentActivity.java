@@ -116,7 +116,7 @@ public class TextContentActivity extends Activity {
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         Bundle extras = getIntent().getExtras();
-        byte[] byteArray = extras.getByteArray("text");
+        byte[] byteArray = extras.getByteArray("name");
         Charset charset = Charset.forName("UTF-8");
         CharsetDecoder decoder = charset.newDecoder();
 
@@ -132,7 +132,7 @@ public class TextContentActivity extends Activity {
         String testString;
        // Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         TextView textContentView = (TextView) findViewById(R.id.fullscreen_content);
-        Log.d("SAIMBHI","the text is: "+ yourStringBuilder);
+        Log.d("SAIMBHI","the name is: "+ yourStringBuilder);
         textContentView.setText(yourStringBuilder);
         } catch(IOException e){
             throw new Error("Error converting into string file", e);
