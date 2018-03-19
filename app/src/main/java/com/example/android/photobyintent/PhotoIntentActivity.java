@@ -357,6 +357,8 @@ public class PhotoIntentActivity extends Activity {
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
                 //String text = combo.getFilterText();
+                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.filter(text); //important to active
 
             }
 
@@ -370,8 +372,7 @@ public class PhotoIntentActivity extends Activity {
             public void onTextChanged(CharSequence arg0, int arg1, int arg2,
                                       int arg3) {
                 // TODO Auto-generated method stub
-                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                adapter.filter(text); //important to active
+
             }
         });
 
@@ -380,41 +381,26 @@ public class PhotoIntentActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                File testFile = new File(Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_PICTURES) + "/CameraSample");
 
-                File[] listOfFiles = testFile.listFiles();
-                String[] filePaths = new String[listOfFiles.length + 1];
-                for (int i = 0; i < listFile.length; i++) {
-                    // Get the path of the image file
-                    filePaths[i] = listOfFiles[i].getAbsolutePath();
-
-                }
-
-                File selectedFile = new File(filePaths[pos]);
+                File selectedFile = new File(adapter.getItem(pos).getFilePath());
+                Log.d("sunday", "the selected file is:" +selectedFile.getName());
                 if (selectedFile.getName().contains("jpg")) {
                     BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                     Bitmap bitmap = BitmapFactory.decodeFile(selectedFile.getAbsolutePath(), bmOptions);
-
-                    // second way using byte stream
-                    // sending bundle to the new activity
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 10, stream);
                     byte[] byteArray = stream.toByteArray();
 
                     Intent photoIntent = new Intent(PhotoIntentActivity.this, ImageActivity.class);
                     photoIntent.putExtra("image", byteArray);
-
                     startActivity(photoIntent);
 
                 } else {
 
                     StringBuilder text = new StringBuilder();
-
                     try {
                         BufferedReader br = new BufferedReader(new FileReader(selectedFile));
                         String line;
-
                         while ((line = br.readLine()) != null) {
                             text.append(line);
                             text.append('\n');

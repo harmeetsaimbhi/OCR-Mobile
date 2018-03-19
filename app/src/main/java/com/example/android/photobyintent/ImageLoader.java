@@ -41,16 +41,32 @@ public class ImageLoader {
     final int stub_id=R.drawable.ic_launcher;
     public void displayImage(String url, ImageView imageView)
     {
-        imageViews.put(imageView, url);
-        Bitmap bitmap=memoryCache.get(url);
-        if(bitmap!=null)
-            imageView.setImageBitmap(bitmap);
-        else
-        {
-            queuePhoto(url, imageView);
-            imageView.setImageResource(stub_id);
+        //imageViews.put(imageView, url);
+        // Bitmap bitmap=memoryCache.get(url);
+        if(url.contains("jpg")) {
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            Bitmap bitmap = BitmapFactory.decodeFile(url, bmOptions);
+            if (bitmap != null)
+                imageView.setImageBitmap(bitmap);
+            else {
+                queuePhoto(url, imageView);
+                imageView.setImageResource(stub_id);
+            }
+        }
+        else{
+            String jpgUrl = (url.substring(0, url.length() - 4).concat(".jpg"));
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            Bitmap bitmap = BitmapFactory.decodeFile(jpgUrl, bmOptions);
+            if (bitmap != null)
+                imageView.setImageBitmap(bitmap);
+            else {
+                queuePhoto(jpgUrl, imageView);
+                imageView.setImageResource(stub_id);
+            }
+
         }
     }
+
 
     private void queuePhoto(String url, ImageView imageView)
     {
