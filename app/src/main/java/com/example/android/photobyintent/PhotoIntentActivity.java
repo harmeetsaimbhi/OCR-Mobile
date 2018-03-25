@@ -381,17 +381,15 @@ public class PhotoIntentActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-
+                Intent photoIntent = new Intent(PhotoIntentActivity.this, ImageActivity.class);
                 File selectedFile = new File(adapter.getItem(pos).getFilePath());
                 Log.d("sunday", "the selected file is:" +selectedFile.getName());
                 if (selectedFile.getName().contains("jpg")) {
                     BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                     Bitmap bitmap = BitmapFactory.decodeFile(selectedFile.getAbsolutePath(), bmOptions);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 10, stream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
                     byte[] byteArray = stream.toByteArray();
-
-                    Intent photoIntent = new Intent(PhotoIntentActivity.this, ImageActivity.class);
                     photoIntent.putExtra("image", byteArray);
                     startActivity(photoIntent);
 

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,8 +111,10 @@ public class LazyAdapter extends BaseAdapter {
                         if(index >= 0) {
                             //TODO handle ending array out of bounds
 //                            sb = new SpannableStringBuilder("..." + sb.subSequence(index > 2 ? index - 3: index, index +  charText.length() + 3) +"...");
-                            ForegroundColorSpan fcs = new ForegroundColorSpan(Color.rgb(158, 158, 158)); //specify color here
+                            ForegroundColorSpan fcs = new ForegroundColorSpan(Color.WHITE); //specify color here
+                            BackgroundColorSpan bcs = new BackgroundColorSpan(Color.GRAY);
                             sb.setSpan(fcs, index, index + charText.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                            sb.setSpan(bcs, index, index + charText.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
                             if (index + charText.length() < origDesc.length() - BUFFER_COUNT) {
                                 sb.replace(index + charText.length() + BUFFER_COUNT, origDesc.length(), "...");
