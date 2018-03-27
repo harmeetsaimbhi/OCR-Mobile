@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -105,6 +106,7 @@ public class PhotoIntentActivity extends Activity {
     String[] country;
     ArrayList<Combination> arraylist = new ArrayList<Combination>();
     Combination combo ;
+    TextView status ;
 
     //GoogleDrive variables
     //GoogleDrive variables
@@ -216,10 +218,13 @@ public class PhotoIntentActivity extends Activity {
     }
 
     public void generateNoteOnSD(Context context, String sFileName, String sBody) {
+        Log.d("FILECREATION", "THE FILE CREATED IS: " + sFileName);
         try {
             //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
             File root = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES) + "/CameraSample");
+//            File root = new File(Environment.getExternalStoragePublicDirectory(
+//                    Environment.DIRECTORY_DOCUMENTS) + "/CameraSample");
             if (!root.exists()) {
                 root.mkdirs();
             }
@@ -309,7 +314,10 @@ public class PhotoIntentActivity extends Activity {
         // retrireving files from the storage starts
         file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES) + "/CameraSample");
+//        file = new File(Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_DOCUMENTS) + "/CameraSample");
         Log.d("SAIMBHI", "The size is:" + file.length());
+        if(file.length() != 0) {
         if (file.isDirectory()) {
             listFile = file.listFiles();
             Log.d("SAIMBHI", "The size is:" + listFile.length);
@@ -329,8 +337,8 @@ public class PhotoIntentActivity extends Activity {
 
             }
         }
-        Log.d("SAIMBHI", "The FileNameStrings is:" + FileNameStrings.length);
-        Log.d("SAIMBHI", "The FilePathStrings is:" + FilePathStrings.length);
+//        Log.d("SAIMBHI", "The FileNameStrings is:" + FileNameStrings.length);
+//        Log.d("SAIMBHI", "The FilePathStrings is:" + FilePathStrings.length);
 
         // passing combination class stuff as an arraylist to LazyAdapter
         for (int i = 0; i < FileNameStrings.length; i++)
@@ -343,6 +351,7 @@ public class PhotoIntentActivity extends Activity {
         // to create ListView
         adapter = new
                 LazyAdapter(this,PhotoIntentActivity.this, this.arraylist);
+        Log.d("FILTER", "The size is:" + arraylist.size());
         list = (ListView) findViewById(R.id.list);
 
         list.setAdapter(adapter);
@@ -358,7 +367,13 @@ public class PhotoIntentActivity extends Activity {
                 // TODO Auto-generated method stub
                 //String text = combo.getFilterText();
                 String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                adapter.filter(text); //important to active
+                try {
+                    adapter.filter(text); //important to active
+                    status = (TextView) findViewById(R.id.status);
+                    status.setText(text.isEmpty() ? "" : "Found in: " + adapter.getCount());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -417,6 +432,10 @@ public class PhotoIntentActivity extends Activity {
             }
         });
 
+        } else {
+            Log.d("SAIMBHI", "NOTHING IN THE DIRECTORY");
+        }
+
         mImageBitmap = null;
         mVideoUri = null;
 
@@ -433,6 +452,7 @@ public class PhotoIntentActivity extends Activity {
             mAlbumStorageDirFactory = new BaseAlbumDirFactory();
         }
 
+
         //initialize Tesseract API
         String language = "eng";
         datapath = getFilesDir() + "/tesseract/";
@@ -440,22 +460,6 @@ public class PhotoIntentActivity extends Activity {
 
         checkFile(new File(datapath + "tessdata/"));
         mTess.init(datapath, language);
-
-        // code for filter
-
-//        for (int i = 0; i < FileNameStrings.length; i++)
-//        {
-//            Combination combo = new Combination(FilePathStrings[i], FileNameStrings[i]);
-//            // Binds all strings into an array
-//            arraylist.add(combo);
-//        }
-
-        // Pass results to ListViewAdapter Class
-        //filterAdapter = new ListViewAdapter(this, arraylist);
-
-        // Binds the Adapter to the ListView
-        //list.setAdapter(adapter);
-
 
 
     }

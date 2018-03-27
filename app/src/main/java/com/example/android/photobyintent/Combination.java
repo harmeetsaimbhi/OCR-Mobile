@@ -12,6 +12,7 @@ public class Combination {
 	private String filePath;
 	private SpannableStringBuilder filterText;
 
+
 	public Combination(String fileName, String filePath, SpannableStringBuilder filterText) {
 		this.fileName = fileName;
 		this.filePath = filePath;
