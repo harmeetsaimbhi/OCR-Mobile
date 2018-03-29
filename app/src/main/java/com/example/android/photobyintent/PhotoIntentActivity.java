@@ -221,10 +221,10 @@ public class PhotoIntentActivity extends Activity {
         Log.d("FILECREATION", "THE FILE CREATED IS: " + sFileName);
         try {
             //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
-            File root = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES) + "/CameraSample");
 //            File root = new File(Environment.getExternalStoragePublicDirectory(
-//                    Environment.DIRECTORY_DOCUMENTS) + "/CameraSample");
+//                    Environment.DIRECTORY_PICTURES) + "/CameraSample");
+            File root = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOCUMENTS) + "/CameraSample");
             if (!root.exists()) {
                 root.mkdirs();
             }
@@ -312,10 +312,10 @@ public class PhotoIntentActivity extends Activity {
         signIn();
 
         // retrireving files from the storage starts
-        file = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES) + "/CameraSample");
 //        file = new File(Environment.getExternalStoragePublicDirectory(
-//                Environment.DIRECTORY_DOCUMENTS) + "/CameraSample");
+//                Environment.DIRECTORY_PICTURES) + "/CameraSample");
+        file = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS) + "/CameraSample");
         Log.d("SAIMBHI", "The size is:" + file.length());
         if(file.length() != 0) {
         if (file.isDirectory()) {
@@ -396,19 +396,19 @@ public class PhotoIntentActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                Intent photoIntent = new Intent(PhotoIntentActivity.this, ImageActivity.class);
+                String searchText = editsearch.getText().toString().toLowerCase(Locale.getDefault());
+                Intent textIntent = new Intent(PhotoIntentActivity.this, TextContentActivity.class);
                 File selectedFile = new File(adapter.getItem(pos).getFilePath());
-                Log.d("sunday", "the selected file is:" +selectedFile.getName());
-                if (selectedFile.getName().contains("jpg")) {
+                String thumbnailPath = adapter.getItem(pos).getImagePath();
+                String fileName = "File Name: " + adapter.getItem(pos).getFileName().replace(".txt",".jpg");
+
                     BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                    Bitmap bitmap = BitmapFactory.decodeFile(selectedFile.getAbsolutePath(), bmOptions);
+
+                    Bitmap bitmap = BitmapFactory.decodeFile(thumbnailPath, bmOptions);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
-                    byte[] byteArray = stream.toByteArray();
-                    photoIntent.putExtra("image", byteArray);
-                    startActivity(photoIntent);
+                    byte[] imageByteArray = stream.toByteArray();
 
-                } else {
 
                     StringBuilder text = new StringBuilder();
                     try {
@@ -423,16 +423,21 @@ public class PhotoIntentActivity extends Activity {
                         throw new Error("Error reading file", e);
                     }
 
-                    Intent textIntent = new Intent(PhotoIntentActivity.this, TextContentActivity.class);
-                    byte[] textBytes = text.toString().getBytes();
-                    textIntent.putExtra("name", textBytes);
-                    startActivity(textIntent);
-                }
+                byte[] textBytes = text.toString().getBytes();
+                Bundle extras = new Bundle();
+                extras.putString("fileName",fileName);
+                extras.putByteArray("image",imageByteArray);
+                extras.putByteArray("name", textBytes);
+                extras.putString("search", searchText);
+                textIntent.putExtras(extras);
+                startActivity(textIntent);
 
             }
         });
 
         } else {
+            Toast.makeText(PhotoIntentActivity.this, "There is no data", Toast.LENGTH_LONG).show();
+
             Log.d("SAIMBHI", "NOTHING IN THE DIRECTORY");
         }
 
@@ -463,6 +468,7 @@ public class PhotoIntentActivity extends Activity {
 
 
     }
+
 
     private void copyFiles() {
         try {

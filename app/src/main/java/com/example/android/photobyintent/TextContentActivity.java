@@ -3,18 +3,33 @@ package com.example.android.photobyintent;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextWatcher;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.text.Normalizer;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -39,7 +54,8 @@ public class TextContentActivity extends Activity {
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
-    private View mContentView;
+    private TextView mContentView;
+    EditText editText;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -114,29 +130,95 @@ public class TextContentActivity extends Activity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        final Intent imageIntent = new Intent(TextContentActivity.this, ImageActivity.class);
+
 
         Bundle extras = getIntent().getExtras();
+
+        //fileName
+        String fileName = extras.getString("fileName");
+        TextView fileNameView = (TextView) findViewById(R.id.fileName);
+        fileNameView.setText(fileName);
+
+        //thumbnail
+        byte[] imageByteArray = extras.getByteArray("image");
+        Bitmap bmp = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
+        ImageView image = (ImageView) findViewById(R.id.thumbnail);
+        image.setImageBitmap(bmp);
+
+        //text
         byte[] byteArray = extras.getByteArray("name");
         Charset charset = Charset.forName("UTF-8");
         CharsetDecoder decoder = charset.newDecoder();
-
-//ByteBuffer.wrap simply wraps the byte array, it does not allocate new memory for it
         ByteBuffer srcBuffer = ByteBuffer.wrap(byteArray);
-//Now, we decode our srcBuffer into a new CharBuffer (yes, new memory allocated here, no can do)
         try {
             CharBuffer resBuffer = decoder.decode(srcBuffer);
-
-
-//CharBuffer implements CharSequence interface, which StringBuilder fully support in it's methods
         StringBuilder yourStringBuilder = new StringBuilder(resBuffer);
-        String testString;
-       // Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         TextView textContentView = (TextView) findViewById(R.id.fullscreen_content);
         Log.d("SAIMBHI","the name is: "+ yourStringBuilder);
         textContentView.setText(yourStringBuilder);
         } catch(IOException e){
             throw new Error("Error converting into string file", e);
         }
+
+        editText = (EditText) findViewById(R.id.search_edt);
+        editText.setText(extras.getString("search"));
+        highlightString(extras.getString("search").toLowerCase());
+
+        image.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                imageIntent.putExtras(getIntent().getExtras());
+                startActivity(imageIntent);
+
+            }
+        });
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                highlightString(s.toString().toLowerCase());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+
+    private void highlightString(String input) {
+//Get the text from text view and create a spannable string
+        SpannableString spannableString = new SpannableString(mContentView.getText());
+//Get the previous spans and remove them
+        BackgroundColorSpan[] backgroundSpans = spannableString.getSpans(0, spannableString.length(), BackgroundColorSpan.class);
+
+        for (BackgroundColorSpan span: backgroundSpans) {
+            spannableString.removeSpan(span);
+        }
+
+//Search for all occurrences of the keyword in the string
+        int indexOfKeyword = spannableString.toString().toLowerCase().indexOf(input);
+
+        while (indexOfKeyword > 0) {
+            //Create a background color span on the keyword
+            spannableString.setSpan(new BackgroundColorSpan(Color.GRAY), indexOfKeyword, indexOfKeyword + input.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            //spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), indexOfKeyword, indexOfKeyword + input.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            //Get the next index of the keyword
+            indexOfKeyword = spannableString.toString().indexOf(input, indexOfKeyword + input.length());
+        }
+
+//Set the final text on TextView
+        mContentView.setText(spannableString);
     }
 
     @Override

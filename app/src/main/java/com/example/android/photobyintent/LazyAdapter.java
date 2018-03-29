@@ -89,7 +89,7 @@ public class LazyAdapter extends BaseAdapter {
         holder.content = (TextView) convertView.findViewById(R.id.searchText);
 
         holder.name.setText(comboList.get(position).getFileName());
-        imageLoader.displayImage(comboList.get(position).getFilePath(), holder.image);
+        imageLoader.displayImage(comboList.get(position).getImagePath(), holder.image);
 
         if(filterTextAdded) {
             holder.content.setText(comboList.get(position).getFilterText());

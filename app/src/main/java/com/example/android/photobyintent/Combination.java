@@ -1,6 +1,8 @@
 package com.example.android.photobyintent;
 
+import android.os.Environment;
 import android.text.SpannableStringBuilder;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,7 +54,22 @@ public class Combination {
 	}
 
 	public String getFilePath() {
+		Log.d("FILEPATH", "The filepath is:" + this.filePath);
 		return this.filePath;
 	}
+
+	public String getImagePath() {
+		Log.d("FILEPATH", "The filepath is:" + this.filePath);
+		Log.d("FILEPATH", "The fileName is:" + this.fileName);
+		String fileName = this.fileName;
+		String imagePath =  (Environment.getExternalStoragePublicDirectory(
+				Environment.DIRECTORY_PICTURES) + "/CameraSample/" + fileName.replace(".txt", ".jpg"));
+		Log.d("FILEPATH", "The returned image filepath is:" + imagePath);
+
+		return imagePath;
+
+
+	}
+
 
 }

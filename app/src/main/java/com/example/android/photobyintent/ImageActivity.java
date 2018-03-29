@@ -98,8 +98,6 @@ public class ImageActivity extends Activity {
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
 
-
-        // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,9 +105,6 @@ public class ImageActivity extends Activity {
             }
         });
 
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         Bundle extras = getIntent().getExtras();
@@ -118,10 +113,6 @@ public class ImageActivity extends Activity {
         ImageView image = (ImageView) findViewById(R.id.preview2);
         image.setImageBitmap(bmp);
 
-//        Bundle extras = getIntent().getExtras();
-//        Bitmap bmp = (Bitmap) extras.getParcelable("imagebitmap");
-//
-//        image.setImageBitmap(bmp);
     }
 
     @Override

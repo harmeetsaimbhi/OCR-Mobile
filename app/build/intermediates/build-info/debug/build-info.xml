@@ -5,46 +5,53 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.0.1"
-    timestamp="1522128320524"
+    timestamp="1522304813638"
     token="-5866190026650800539"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="123" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="14" />
     <task
         name="verifier"
-        duration="0" />
+        duration="3" />
+
+    <artifact
+        location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        type="SPLIT" />
 
     <build
         build-mode="FULL"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1522128302673"
-        verifier="COLD_SWAP_REQUESTED" >
+        timestamp="1522301334575"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/outputs/apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
+        <artifact
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            type="SPLIT" />
         <artifact
             location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
             type="SPLIT" />
         <artifact
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            type="SPLIT" />
+        <artifact
             location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
         <artifact
             location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
@@ -53,21 +60,23 @@
             location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
-        <artifact
-            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/outputs/apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1522128320524"
-        verifier="COLD_SWAP_REQUESTED" />
+        ir-eligibility="COMPATIBLE"
+        timestamp="1522304813638"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/harmeetsaimbhi/UVIC/FinalProject/OCR-Mobile/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+    </build>
 
 </instant-run>
